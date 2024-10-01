@@ -10,6 +10,6 @@ class Cat(Base):
     cat_id = Column(Integer, autoincrement=True, primary_key=True)
     color = Column(String(length=64), nullable=True)
     age_in_month = Column(Integer, nullable=True)
-    description = Column(Text)
+    description = Column(Text, nullable=True)
     breed_id = Column(ForeignKey('breeds.breed_id'))
     breed: Mapped['Breed'] = relationship('Breed', back_populates='cats')
