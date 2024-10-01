@@ -1,11 +1,11 @@
 from fastapi import HTTPException
 from sqlalchemy import select
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.ext.baked import Result
 from sqlalchemy.orm import joinedload
 
 from src.models import Cat
+from src.repositories.breeds import BreedsRepository
 
 
 class CatsRepository:
@@ -28,11 +28,11 @@ class CatsRepository:
                      color: str | None = None,
                      age_in_month: int | None = None,
                      description: str | None = None) -> Cat:
-        try:
-            return await CatsRepository._create(session, breed_id, color, age_in_month, description)
-        except IntegrityError:
+        breed = await BreedsRepository.get_by_id(session, breed_id)
+        if not breed:
             raise HTTPException(status_code=400,
                                 detail='Theres no such thing as a breed of cat with that breed_id')
+        return await CatsRepository._create(session, breed_id, color, age_in_month, description)
 
     @staticmethod
     async def _get(session: AsyncSession, cat_id: int) -> Cat:
