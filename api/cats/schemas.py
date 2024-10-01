@@ -8,6 +8,7 @@ class CatSchema(pydantic.BaseModel):
 
 
 class CatGetSchema(CatSchema):
+    cat_id: int
     breed_id: int | None
 
 
@@ -17,8 +18,8 @@ class CatDetailSchema(CatSchema):
     breed_description: str | None
 
 
-class CatCreateSchema(CatGetSchema):
-    ...
+class CatCreateSchema(CatSchema):
+    breed_id: int | None
 
 
 class CatUpdateSchema(CatSchema):
