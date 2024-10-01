@@ -5,7 +5,7 @@ from api.breeds.schemas import BreedCreateSchema, BreedGetSchema, BreedCatsSchem
 from src.database import db
 from src.repositories import BreedsRepository
 
-router = APIRouter(prefix='/breeds')
+router = APIRouter(prefix='/breeds', tags=['breeds'])
 
 
 @router.post('/create',

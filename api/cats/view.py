@@ -6,7 +6,7 @@ from api.cats.schemas import CatCreateSchema, \
 from src.database import db
 from src.repositories import CatsRepository
 
-router = APIRouter(prefix='/cats')
+router = APIRouter(prefix='/cats', tags=['cats'])
 
 
 @router.post('/create',
