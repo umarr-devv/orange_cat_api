@@ -10,7 +10,7 @@ router = APIRouter(prefix='/cats', tags=['cats'])
 
 
 @router.post('/create',
-             response_model=CatCreateSchema,
+             response_model=CatGetSchema,
              status_code=status.HTTP_201_CREATED)
 async def post_cat(cat: CatCreateSchema,
                    session: AsyncSession = Depends(db.session_dependency)):
