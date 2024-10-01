@@ -2,10 +2,10 @@ import pydantic
 
 
 class DataBaseConfig(pydantic.BaseModel):
-    database: str = 'orange_cat'
-    host: str = 'localhost'
+    database: str = 'postgres'
+    host: str = 'db'
     user: str = 'postgres'
-    password: str = 'qal3ko8tFgzyuL3vBeQW55UFNN9KcLJfeRisBhugm3NYc0WoUIKbzThf8sn0SWKY'
+    password: str = 'secret_password'
     echo: bool = False
 
     @property
