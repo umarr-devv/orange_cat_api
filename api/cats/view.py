@@ -33,3 +33,23 @@ async def delete_cat(cat: CatDeleteSchema,
     return {
         'detail': 'success'
     }
+
+
+@router.get('/{cat_id}')
+async def get_cat(cat_id: int,
+                  session: AsyncSession = Depends(db.session_dependency)):
+    cat = await CatsRepository.get(session, cat_id)
+    return CatDetailSchema(
+        color=cat.color,
+        age_in_month=cat.age_in_month,
+        description=cat.description,
+        breed_id=cat.breed.breed_id,
+        breed_name=cat.breed.name,
+        breed_description=cat.breed.description
+    )
+
+
+@router.get('/',
+            response_model=list[CatGetSchema])
+async def get_all_cats(session: AsyncSession = Depends(db.session_dependency)):
+    return await CatsRepository.all(session)
