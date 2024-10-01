@@ -2,11 +2,11 @@ import pydantic
 
 
 class DataBaseConfig(pydantic.BaseModel):
-    database: str
-    host: str
-    user: str
-    password: str
-    echo: bool
+    database: str = 'postgres'
+    host: str = 'db'
+    user: str = 'postgres'
+    password: str = 'secret_password'
+    echo: bool = False
 
     @property
     def url(self) -> str:
