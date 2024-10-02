@@ -63,7 +63,7 @@ class CatsRepository:
         cat = await CatsRepository.get(session, cat_id)
         cat.color = color if color else cat.color
         cat.age_in_month = age_in_month if age_in_month else cat.age_in_month
-        cat.description = description if description else description
+        cat.description = description if description else cat.description
         await session.commit()
         return cat
 
